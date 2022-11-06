@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import MainContextProvider from "./context/context.jsx";
+import Users from "./components/users/index.js";
+import { Routes, Route } from "react-router-dom";
+import UserBoards from "./components/userBoards/index.js";
+import Tasks from "./components/tasks/index.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainContextProvider>
+      <div className='App'>
+        <Routes>
+          <Route path='/' element={<Users />} />
+          <Route path='/:userID' element={<UserBoards />} />
+          <Route path='/:userID/:boardName' element={<Tasks />} />
+        </Routes>
+      </div>
+    </MainContextProvider>
   );
 }
 
